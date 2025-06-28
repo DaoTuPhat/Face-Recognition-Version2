@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  backend:
+    image: daotuphat/face-backend:latest
+    container_name: backend
+    ports:
+      - "8000:8000"
+    networks:
+      - face-recognition-network
+
+  frontend:
+    image: daotuphat/face-frontend:latest
+    container_name: frontend
+    ports:
+      - "3001:3001"
+    networks:
+      - face-recognition-network
+    depends_on:
+      - backend
+
+networks:
+  face-recognition-network:
+    driver: bridge
